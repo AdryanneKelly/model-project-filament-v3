@@ -22,7 +22,7 @@ class MoreStatsOverview extends BaseWidget
             Stat::make('Average time on page', '3:12')
                 ->description('3% increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->color('success'),
+                ->color('warning'),
         ];
     }
 }
