@@ -13,7 +13,6 @@ class Contributor extends Model
         'name',
         'about',
         'city',
-        
         'linkedin',
         'github',
         'photo'
