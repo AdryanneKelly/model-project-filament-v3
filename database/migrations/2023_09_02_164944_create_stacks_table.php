@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contributors', function (Blueprint $table) {
+        Schema::create('stacks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('about');
-            $table->string('city');
-            $table->longText('linkedin')->nullable();
-            $table->longText('github')->nullable();
-            $table->longText('photo');
+            $table->string('stack_name');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contributors');
+        Schema::dropIfExists('stacks');
     }
 };

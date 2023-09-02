@@ -13,7 +13,7 @@ class Contributor extends Model
         'name',
         'about',
         'city',
-        'stacks',
+        
         'linkedin',
         'github',
         'photo'
@@ -23,4 +23,9 @@ class Contributor extends Model
         'photo' => 'array',
         'stacks' => 'array'
     ];
+
+    protected function stacks()
+    {
+        return $this->hasMany(Stack::class);
+    }
 }

@@ -33,16 +33,18 @@ class ContributorResource extends Resource
                     ->required()
                     ->fileAttachmentsDirectory('profiles-contributor')
                     ->columnSpanFull(),
-                Forms\Components\Select::make('stacks')
-                    ->multiple()
-                    ->options([
-                        'PHP' => '<span class="text-blue-500">PHP</span>',
-                        'Laravel' => '<span class="text-red-500">Laravel</span>',
-                        'MySQL' => '<span class="text-pink-500">MySQL</span>',
-                        'FilamentPHP' => '<span class="text-green-500">FilamentPHP</span>',
-                        'HTML' => '<span class="text-red-500">HTML</span>',
-                    ])->allowHtml()
-                    ->required(),
+                // Forms\Components\Select::make('stacks')
+                //     ->multiple()->columnSpanFull()
+                //     ->options([
+                //         'PHP' => '<span class="text-blue-500">PHP</span>',
+                //         'Laravel' => '<span class="text-red-500">Laravel</span>',
+                //         'MySQL' => '<span class="text-pink-500">MySQL</span>',
+                //         'FilamentPHP' => '<span class="text-green-500">FilamentPHP</span>',
+                //         'HTML' => '<span class="text-red-500">HTML</span>',
+                //         'CSS' => '<span class="text-red-500">CSS</span>',
+                //         'BootStrap' => '<span class="text-red-500">BootStrap</span>',
+                //     ])->allowHtml()
+                //     ->required(),
                 Forms\Components\TextInput::make('linkedin')->url(),
                 Forms\Components\TextInput::make('github')->url(),
                 Forms\Components\FileUpload::make('photo')
