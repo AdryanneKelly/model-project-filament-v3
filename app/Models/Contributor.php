@@ -12,6 +12,7 @@ class Contributor extends Model
     protected $fillable = [
         'name',
         'about',
+        'stacks',
         'city',
         'linkedin',
         'github',
@@ -20,11 +21,11 @@ class Contributor extends Model
 
     protected $casts = [
         'photo' => 'array',
-        'stacks' => 'array'
+        'stacks' => 'array',
     ];
 
-    protected function stacks()
+    public function stacks()
     {
-        return $this->hasMany(Stack::class);
+        return $this->belongsTo(Stack::class);
     }
 }

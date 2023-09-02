@@ -13,7 +13,8 @@ class Stack extends Model
         'stack_name'
     ];
 
-    protected function contributors(){
+    public function contributors()
+    {
         return $this->belongsTo(Contributor::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContributorResource\Pages;
 use App\Filament\Resources\ContributorResource\RelationManagers;
 use App\Models\Contributor;
+use App\Models\Stack;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,6 +34,16 @@ class ContributorResource extends Resource
                     ->required()
                     ->fileAttachmentsDirectory('profiles-contributor')
                     ->columnSpanFull(),
+                Forms\Components\TagsInput::make('stacks')->label('Stacks and Skills')
+                    ->suggestions([
+                        'PHP',
+                        'Laravel',
+                        'English Intermediate',
+                        'MySQL',
+                        'Flutter'
+                    ])
+                    ->columnSpanFull()
+                    ->required(),
                 Forms\Components\TextInput::make('linkedin')->url(),
                 Forms\Components\TextInput::make('github')->url(),
                 Forms\Components\FileUpload::make('photo')
@@ -54,8 +65,12 @@ class ContributorResource extends Resource
                 Tables\Columns\TextColumn::make('city')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('linkedin')
+                    ->copyable()
+                    ->copyMessage('Link copied')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('github')
+                    ->copyable()
+                    ->copyMessage('Link copied')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

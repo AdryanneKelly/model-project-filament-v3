@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('contributors', function (Blueprint $table) {
+            $table->longText('stacks')->after('about');
         });
     }
 
