@@ -5,13 +5,19 @@ namespace App\Filament\Widgets;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
+use function Filament\Support\format_money;
+
 class MoreStatsOverview extends BaseWidget
 {
     protected static ?int $sort = 4;
     protected function getStats(): array
     {
+
+        $valor = 34.89;
+
+
         return [
-            Stat::make('Unique views', '192.1k')
+            Stat::make('Unique views', format_money($valor, 'brl'))
                 ->description('32k increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('success'),
