@@ -15,7 +15,6 @@ class MoreStatsOverview extends BaseWidget
 
         $valor = 34.89;
 
-
         return [
             Stat::make('Unique views', format_money($valor, 'brl'))
                 ->description('32k increase')

@@ -20,6 +20,11 @@ class ContributorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public function getMaxContentWidth(): ?string
+    {
+        return 'full';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
