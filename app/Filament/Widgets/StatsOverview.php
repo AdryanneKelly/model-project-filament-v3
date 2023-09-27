@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use Filament\Actions\Action;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -25,7 +26,11 @@ class StatsOverview extends BaseWidget
                 ->description('3% increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->chart([7, 2, 10, 3, 15, 4, 17])
-                ->color('danger'),
+                ->color('danger')
+                ->extraAttributes([
+                    'class' => 'cursor-pointer',
+                    'onclick' => "(window.location='{{ route('edit.user') }}')",
+                ]),
         ];
     }
 }
