@@ -69,6 +69,7 @@ class ContributorResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')
                     ->searchable(),
+                // Tables\Columns\TextColumn::make('stacks'),
                 Tables\Columns\TextColumn::make('linkedin')
                     ->copyable()
                     ->copyMessage('Link copied')
