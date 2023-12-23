@@ -61,6 +61,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->sidebarCollapsibleOnDesktop();
+            ->profile()->topNavigation(true)->brandName('Projeto Modelo');
     }
 }
