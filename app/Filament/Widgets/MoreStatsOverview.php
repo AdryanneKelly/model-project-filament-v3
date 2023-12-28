@@ -2,8 +2,10 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Contributor;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Database\Eloquent\Builder;
 
 use function Filament\Support\format_money;
 
@@ -14,11 +16,18 @@ class MoreStatsOverview extends BaseWidget
     {
 
         $valor = 34.89;
+        $startDate = $this->filters['startDate'] ?? null;
+        $endDate = $this->filters['endDate'] ?? null;
 
         return [
-            Stat::make('Unique views', format_money($valor, 'brl'))
-                ->description('32k increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+            Stat::make(
+                label: 'Contribuidores',
+                value: Contributor::query()
+                    ->when($startDate, fn (Builder $query) => $query->whereDate('created_at', '>=', $startDate))
+                    ->when($endDate, fn (Builder $query) => $query->whereDate('created_at', '<=', $endDate))
+                    ->count(),
+            )->description('7% increase')
+                ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('success'),
             Stat::make('Bounce rate', '21%')
                 ->description('7% increase')
