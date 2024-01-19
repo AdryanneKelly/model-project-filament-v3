@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Widgets\BarChart;
+use App\Filament\Widgets\CalendarWidget;
 use App\Filament\Widgets\ExpensesChart;
 use App\Filament\Widgets\LineChart;
 use App\Filament\Widgets\StatsOverview;
@@ -21,6 +22,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -46,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 StatsOverview::class,
                 BarChart::class,
                 LineChart::class,
+                CalendarWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -61,6 +64,23 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->profile()->topNavigation(true)->brandName('Projeto Modelo');
+            ->profile()->topNavigation(true)->brandName('Projeto Modelo')
+            ->plugin(
+                FilamentFullCalendarPlugin::make()
+                    ->schedulerLicenseKey('')
+                    ->selectable()
+                    ->editable()
+                    ->timezone('America/Sao_Paulo')
+                    ->locale('pt-br')
+                    ->plugins([
+                        'dayGrid',
+                        'timeGrid',
+                        'list',
+                        'interaction',
+                    ], true)
+                    ->config(
+                        []
+                    )
+            );
     }
 }
