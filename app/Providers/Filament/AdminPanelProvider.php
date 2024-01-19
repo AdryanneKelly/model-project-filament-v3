@@ -67,7 +67,6 @@ class AdminPanelProvider extends PanelProvider
             ->profile()->topNavigation(true)->brandName('Projeto Modelo')
             ->plugin(
                 FilamentFullCalendarPlugin::make()
-                    ->schedulerLicenseKey('')
                     ->selectable()
                     ->editable()
                     ->timezone('America/Sao_Paulo')

@@ -6,7 +6,9 @@ use App\Models\Event;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Illuminate\Database\Eloquent\Model;
+use Saade\FilamentFullCalendar\Actions\CreateAction;
 use Saade\FilamentFullCalendar\Data\EventData;
 use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;
 
@@ -43,5 +45,20 @@ class CalendarWidget extends FullCalendarWidget
                 ]
             )
             ->all();
+    }
+
+    protected function headerActions(): array
+    {
+        return [
+            CreateAction::make()->label('Criar evento')->modalSubmitActionLabel('Criar evento')->modalCancelActionLabel('Cancelar')
+                ->mountUsing(
+                    function (Form $form, array $arguments) {
+                        $form->fill([
+                            'start' => $arguments['start'] ?? null,
+                            'end' => $arguments['end'] ?? null
+                        ]);
+                    }
+                )
+        ];
     }
 }
