@@ -3,13 +3,13 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Event;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Illuminate\Database\Eloquent\Model;
 use Saade\FilamentFullCalendar\Actions\CreateAction;
-use Saade\FilamentFullCalendar\Data\EventData;
 use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;
 
 class CalendarWidget extends FullCalendarWidget
@@ -25,7 +25,8 @@ class CalendarWidget extends FullCalendarWidget
                 ->schema([
                     DateTimePicker::make('start'),
                     DateTimePicker::make('end'),
-                ]),
+                    ColorPicker::make('color'),
+                ])->columns(3),
         ];
     }
 
@@ -42,6 +43,7 @@ class CalendarWidget extends FullCalendarWidget
                     'title' => $event->title,
                     'start' => $event->start,
                     'end' => $event->end,
+                    'color' => $event->color,
                 ]
             )
             ->all();
