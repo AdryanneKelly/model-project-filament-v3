@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Contributor;
+use App\Models\Event;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,13 +24,13 @@ class MoreStatsOverview extends BaseWidget
             Stat::make(
                 label: 'Contribuidores',
                 value: Contributor::query()
-                    ->when($startDate, fn (Builder $query) => $query->whereDate('created_at', '>=', $startDate))
-                    ->when($endDate, fn (Builder $query) => $query->whereDate('created_at', '<=', $endDate))
+                    ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
+                    ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
                     ->count(),
             )->description('7% increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('success'),
-            Stat::make('Bounce rate', '21%')
+            Stat::make('Eventos', Event::where('start', '=', today())->count())
                 ->description('7% increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('danger'),

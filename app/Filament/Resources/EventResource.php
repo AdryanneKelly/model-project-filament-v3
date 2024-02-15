@@ -27,7 +27,6 @@ class EventResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('title')->label('Título')
                     ->maxLength(255),
-
                 Forms\Components\TextInput::make('color')->label('Cor')
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('start')->label('Início'),

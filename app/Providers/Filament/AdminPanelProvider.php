@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\EditProfile;
+use App\Filament\Pages\Auth\RegisterProfile;
 use App\Filament\Widgets\BarChart;
 use App\Filament\Widgets\CalendarWidget;
 use App\Filament\Widgets\ExpensesChart;
@@ -11,6 +13,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
+use Filament\Pages\Auth\Register;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -64,7 +67,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->profile()->topNavigation(true)->brandName('Projeto Modelo')
+            ->topNavigation(true)->brandName('Projeto Modelo')
             ->plugin(
                 FilamentFullCalendarPlugin::make()
                     ->selectable()
@@ -80,6 +83,6 @@ class AdminPanelProvider extends PanelProvider
                     ->config(
                         []
                     )
-            );
+            )->profile(EditProfile::class, isSimple: false)->registration(RegisterProfile::class);
     }
 }
