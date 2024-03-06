@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\EditUser;
+use App\Livewire\Products\ListProducts;
 use Illuminate\Support\Facades\Route;
 
 /*

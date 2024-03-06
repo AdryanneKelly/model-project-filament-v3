@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use IbrahimBougaoua\FilamentRatingStar\Actions\RatingStar;
+use IbrahimBougaoua\FilamentRatingStar\Columns\RatingStarColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,6 +31,7 @@ class EventResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('color')->label('Cor')
                     ->maxLength(255),
+                RatingStar::make('rating')->label('Avaliação'),
                 Forms\Components\DateTimePicker::make('start')->label('Início'),
                 Forms\Components\DateTimePicker::make('end')->label('Fim'),
                 Forms\Components\Textarea::make('description')->label('Descrição')
@@ -45,6 +48,7 @@ class EventResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                RatingStarColumn::make('rating'),
                 Tables\Columns\TextColumn::make('start')
                     ->dateTime()
                     ->sortable(),

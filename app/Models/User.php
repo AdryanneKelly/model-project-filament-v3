@@ -51,4 +51,8 @@ class User extends Authenticatable implements HasAvatar
     {
         return $this->avatar ? url('storage/' . $this->avatar) : null;
     }
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

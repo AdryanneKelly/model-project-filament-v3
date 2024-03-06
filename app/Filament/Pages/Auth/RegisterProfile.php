@@ -3,6 +3,7 @@
 namespace App\Filament\Pages\Auth;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Pages\Auth\Register;
 use Filament\Pages\Page;
 use Filament\Forms\Components\TextInput;
@@ -24,7 +25,9 @@ class RegisterProfile extends Register
                 FileUpload::make('avatar')
                     ->image()
                     ->disk('public')
-                    ->directory('avatars/' . auth()->id())
+                    ->directory('avatars/' . auth()->id()),
+                Repeater::make('events')
+                    ->relationship()
             ]);
     }
 }
